@@ -1,35 +1,36 @@
 import React, {Component} from 'react';
 
-const App = () => (<Counter></Counter>)
+//connectメソッドをreact-reduxライブラリから参照
+import { connect } from 'react-redux'
 
-class Counter extends Component {
-  constructor(props){
-    super(props)
-    this.state = {count: 0}
-  }
-  
-  plusButton = () => {
-    const currentCount = this.state.count
-    this.setState({count: currentCount + 1})
-  }
-  minusButton = () => {
-    const currentCount = this.state.count
-    this.setState({count: currentCount - 1})
-  }
-  
+//actionsからincrement,decrementを参照
+import { increment, decrement } from '../actions'
 
-  render(){
-    console.log(this.state)
+
+class App extends Component {
+  render() {
+    const props = this.props
     return (
       <React.Fragment>
-        <div>counter: {this.state.count}</div>
-        <button onClick={this.plusButton}>+1</button>
-        <button onClick={this.minusButton}>-1</button>
+        <div>value: {props.value}</div>
+        <button onClick={props.increment}>+1</button>
+        <button onClick={props.decrement}>-1</button>
       </React.Fragment>
     )
   }
-
-
 }
 
-export default App;
+//stateの状態から必要なコンポーネントを取り出して、コンポーネント内のpropsにマッピングする
+const mapStateToProps = state => ({
+  value: state.count.value
+})
+
+//incrementとdecrementを該当のアクションをdispatchに渡して実行することで状態遷移を行う。
+const mapDispatchToProps = dispatch => ({
+  increment: () => dispatch(increment()),
+  decrement: () => dispatch(decrement())
+})
+
+
+//stateとactionをコンポーネントに関連付ける実装
+export default connect(mapStateToProps, mapDispatchToProps)(App)
