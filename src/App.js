@@ -1,17 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Proptypes from 'prop-types';
 
-class App extends Component {
-  render() {
-    // const bar = "maxamo!"
-    // const dom = <h1>{bar}</h1>
+const App = () => {
+  const profiles = [
+    {name: "taro", age: 10},
+    {name: "hanako", age: 16},
+    {name: "makkoi", age: 18}
+  ]
 
-    return (
-      <React.Fragment>
-        <label htmlFor="bar">bar</label>
-        <input type="text" onChange={() => {console.log("I am clicked!")}}/>
-      </React.Fragment>
-    )
-  }
+  return(
+    <div>
+      {
+        profiles.map((profile, index) => {
+          return <User name={profile.name} age={profile.age} key={index} />
+        })
+      }
+    </div>
+  )
+}
+const User = (props) => {
+  return <div>Hi!, I am {props.name},and {props.age}years old!</div>
+}
+
+User.propTypes = {
+  name: Proptypes.string,
+  age: Proptypes.number
 }
 
 export default App;
