@@ -1,6 +1,6 @@
 //ここではアプリケーション内のReducerを全て総括するファイルです
 
 import { combineReducers } from 'redux';
-import count from './counter.js';
+import events from './events';
 
-export default combineReducers({ count })
+export default combineReducers({ events })
