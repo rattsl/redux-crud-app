@@ -16,10 +16,10 @@ renderField(field){
     return (
       <form>
           <div>
-            <Field label="Title" name="title" type="text" Component={this.renderField} />
+            <Field label="Title" name="title" type="text" component={this.renderField} />
           </div>
           <div>
-            <Field label="Body" name="body" type="text" Component={this.renderField} />
+            <Field label="Body" name="body" type="text" component={this.renderField} />
           </div>
           <div>
             <input type="submit" value="Submit" disabled={false}/>
