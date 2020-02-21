@@ -30,20 +30,25 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const enhancer = process.env.NODE_ENV === "development" ?
 composeWithDevTools(applyMiddleware(thunk)): applyMiddleware(thunk)
 
+//material-ui
+
+
 const store = createStore(reducer, enhancer)
 
 //次にここで作成したストアがどのコンポーネントからも参照できるようにProviderを使う。そしてstore属性に作成したstoreを渡す。
 ReactDOM.render(
-<Provider store={store}>
-    <BrowserRouter>
-        <Switch>
-            <Route path="/events/new" component={EventsNew} />
-            <Route path="/events/:id" component={EventsShow} />
-            <Route exact path="/events" component={EventsIndex} />
-            <Route exact path="/" component={EventsIndex} />
-        </Switch>
-    </BrowserRouter>
-</Provider>,
+
+    <Provider store={store}>
+        <BrowserRouter>
+            <Switch>
+                <Route path="/events/new" component={EventsNew} />
+                <Route path="/events/:id" component={EventsShow} />
+                <Route exact path="/events" component={EventsIndex} />
+                <Route exact path="/" component={EventsIndex} />
+            </Switch>
+        </BrowserRouter>
+    </Provider>,
+
 document.getElementById('root'));
 
 serviceWorker.unregister();
